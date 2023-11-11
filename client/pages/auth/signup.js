@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
-// import useRequest from '../../hooks/use-request';
 import useRequestSignUp from '../../hooks/use-request-signup';
+import Router from 'next/router';
 
 const signup = () => {
   const [email, setEmail] = useState('');
@@ -11,7 +10,8 @@ const signup = () => {
     method: 'post',
     body: {
       email, password
-    }
+    },
+    onSuccess: () => Router.push('/')
   })
 
   const getErrorsForField = (fieldName) => {
@@ -20,7 +20,9 @@ const signup = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
     await doRequest();
+
   };
 
   return (
