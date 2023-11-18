@@ -8,6 +8,7 @@ const Landing = ({ currentUser }) => {
 Landing.getInitialProps = async (context) => {
   //window only exist in browser, so if window is undefined, we are on server
   //request should be made to ingress-nginx (service name + namespace name...)
+  console.log('Landing page');
   const { data } = await buildClient(context).get('/api/users/currentuser').catch((err) => {
     console.log(err.message);
   })
